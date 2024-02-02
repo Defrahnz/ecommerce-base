@@ -4,11 +4,23 @@
  */
 package com.ecommerce.base.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import java.util.List;
+
 /**
  *
  * @author nihil
  */
+@Entity
+@Table(name="users")
 public class User {
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
     private String nombre;
     private String username;
@@ -17,11 +29,18 @@ public class User {
     private String telefono;
     private String tipo;
     private String pasword;
+    
+    @OneToMany(mappedBy="usuario")
+    private List<Product> products;
+    
+    @OneToMany(mappedBy= "usuario")
+    private List<Orden> ordenes;
 
+    
     public User() {
     }
 
-    public User(Integer id, String nombre, String username, String email, String direccion, String telefono, String tipo, String pasword) {
+    public User(Integer id, String nombre, String username, String email, String direccion, String telefono, String tipo, String pasword, List<Product> products, List<Orden> ordenes) {
         this.id = id;
         this.nombre = nombre;
         this.username = username;
@@ -30,10 +49,12 @@ public class User {
         this.telefono = telefono;
         this.tipo = tipo;
         this.pasword = pasword;
+        this.products = products;
+        this.ordenes = ordenes;
     }
-    
 
-    
+
+
     //Getters and Setters
 
     public Integer getId() {
@@ -99,6 +120,23 @@ public class User {
     public void setPasword(String pasword) {
         this.pasword = pasword;
     }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+    public List<Orden> getOrdenes() {
+        return ordenes;
+    }
+
+    public void setOrdenes(List<Orden> ordenes) {
+        this.ordenes = ordenes;
+    }
+    
     
     @Override
     public String toString() {
