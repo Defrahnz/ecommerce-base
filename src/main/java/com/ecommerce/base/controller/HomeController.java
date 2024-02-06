@@ -4,7 +4,9 @@
  */
 package com.ecommerce.base.controller;
 
+import com.ecommerce.base.model.Product;
 import com.ecommerce.base.service.ProductService;
+import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +32,12 @@ public class HomeController {
         return "usuario/home";
     }
     @GetMapping("productohome/{id}")
-    public String productohome(@PathVariable Integer id){
+    public String productohome(@PathVariable Integer id,Model model){
         logger.info("Id del producto enviado como parámetro: []",id);
-        
+        Product producto=new Product();
+        Optional<Product> productoOpt=productoService.get(id);
+        producto=productoOpt.get();
+        model.addAttribute("producto", producto);
         return "usuario/productohome";
     }
 }
