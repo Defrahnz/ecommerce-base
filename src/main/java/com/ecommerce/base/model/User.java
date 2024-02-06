@@ -40,7 +40,7 @@ public class User {
     public User() {
     }
 
-    public User(Integer id, String nombre, String username, String email, String direccion, String telefono, String tipo, String pasword, List<Product> products, List<Orden> ordenes) {
+    public User(int id, String nombre, String username, String email, String direccion, String telefono, String tipo, String pasword) {
         this.id = id;
         this.nombre = nombre;
         this.username = username;
