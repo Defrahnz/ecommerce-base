@@ -5,11 +5,13 @@
 package com.ecommerce.base.service;
 
 import com.ecommerce.base.model.Orden;
+import java.util.List;
 
 /**
  *
  * @author nihil
  */
 public interface OrdenService {
+    List<Orden> findAll();
     Orden save(Orden orden);
 }
