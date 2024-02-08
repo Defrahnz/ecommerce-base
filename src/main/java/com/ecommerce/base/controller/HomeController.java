@@ -10,6 +10,7 @@ import com.ecommerce.base.model.Product;
 import com.ecommerce.base.service.ProductService;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -65,6 +66,24 @@ public class HomeController {
         detalleOrden.setTotal(producto.getPrecio()* cantidad);
         detalleOrden.setProducto(producto);
         detalles.add(detalleOrden);
+        sumaTotal=detalles.stream().mapToDouble(dt->dt.getTotal()).sum();
+        orden.setTotal(sumaTotal);
+        model.addAttribute("cart", detalles);
+        model.addAttribute("orden", orden);
+        return "usuario/carrito";
+    }
+    //Quitar el producto
+    @GetMapping("/delete/cart/{id}")
+    public String deleteProducto(@PathVariable Integer id,Model model){
+        List<DetalleOrden> ordenNuevo=new ArrayList<DetalleOrden>();
+        for(DetalleOrden detalleOrden:detalles){
+            if(!Objects.equals(detalleOrden.getProducto().getId(), id)){
+                ordenNuevo.add(detalleOrden);
+            }
+        }
+        //Nueva lista con los productos que siguieron comprando
+        detalles=ordenNuevo;
+        double sumaTotal;
         sumaTotal=detalles.stream().mapToDouble(dt->dt.getTotal()).sum();
         orden.setTotal(sumaTotal);
         model.addAttribute("cart", detalles);
