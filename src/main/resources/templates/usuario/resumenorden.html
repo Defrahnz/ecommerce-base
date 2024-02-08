@@ -48,9 +48,9 @@
                                 <h5 class="card-title">
                                     DATOS ORDEN
                                 </h5>
-                                <h6>Nombre: </h6>
-                                <h6 >Correo: </h6>
-                                <h6 >Dirección</h6>
+                                <h6 th:text="${usuario.nombre}">Nombre: </h6>
+                                <h6 th:text="${usuario.email}">Correo: </h6>
+                                <h6 th:text="${usuario.direccion}">Dirección</h6>
 
                                 <h5 class="card-title">
                                     PRODUCTOS
@@ -66,11 +66,11 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td >Nombre</td>
-                                                <td >Precio</td>
-                                                <td>Cantidad</td>
-                                                <td >Total</td>
+                                            <tr th:each="detalleOrden:${cart}">
+                                                <td th:text="${detalleOrden.nombre}"></td>
+                                                <td th:text="${detalleOrden.precio}"></td>
+                                                <td th:text="${detalleOrden.cantidad}"></td>
+                                                <td th:text="${detalleOrden.total}"></td>
 
                                             </tr>
                                         </tbody>
@@ -85,7 +85,7 @@
                             <h2 class="card-title">Resumen Orden</h2>
 
                             <ul class="list-group">
-                                <li class="list-group-item"><h5> Total:</h5></li>
+                                <li class="list-group-item"><h5 th:text=" 'Total: '+${orden.total}"> </h5></li>
                                 <a href="#" class="btn btn-dark">Generar</a>
                             </ul>
                         </div>
