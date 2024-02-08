@@ -7,7 +7,9 @@ package com.ecommerce.base.controller;
 import com.ecommerce.base.model.DetalleOrden;
 import com.ecommerce.base.model.Orden;
 import com.ecommerce.base.model.Product;
+import com.ecommerce.base.model.User;
 import com.ecommerce.base.service.ProductService;
+import com.ecommerce.base.service.UserService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -37,6 +39,8 @@ public class HomeController {
     List<DetalleOrden> detalles=new ArrayList<DetalleOrden>();
     //Datos de la orden
     Orden orden=new Orden();
+    @Autowired
+    private UserService usuarioService;
     @GetMapping("")
     public String home(Model model){
         model.addAttribute("productos", productoService.findAll());
@@ -102,7 +106,11 @@ public class HomeController {
         return "usuario/carrito";
     }
     @GetMapping("/Orden")
-    public String order(){
+    public String order(Model model){
+        User usuario=usuarioService.findById(1).get();
+        model.addAttribute("cart", detalles);
+        model.addAttribute("orden", orden);
+        model.addAttribute("usuario", usuario);
         return "usuario/resumenorden";
     }
 }
