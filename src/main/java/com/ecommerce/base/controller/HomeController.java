@@ -8,9 +8,12 @@ import com.ecommerce.base.model.DetalleOrden;
 import com.ecommerce.base.model.Orden;
 import com.ecommerce.base.model.Product;
 import com.ecommerce.base.model.User;
+import com.ecommerce.base.service.DetalleOrdenService;
+import com.ecommerce.base.service.OrdenService;
 import com.ecommerce.base.service.ProductService;
 import com.ecommerce.base.service.UserService;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -41,6 +44,10 @@ public class HomeController {
     Orden orden=new Orden();
     @Autowired
     private UserService usuarioService;
+    @Autowired
+    private OrdenService ordenService;
+    @Autowired
+    private DetalleOrdenService detalleOrdenService;
     @GetMapping("")
     public String home(Model model){
         model.addAttribute("productos", productoService.findAll());
@@ -49,7 +56,7 @@ public class HomeController {
     @GetMapping("productohome/{id}")
     public String productohome(@PathVariable Integer id,Model model){
         logger.info("Id del producto enviado como parámetro: []",id);
-        Product producto=new Product();
+        Product producto;
         Optional<Product> productoOpt=productoService.get(id);
         producto=productoOpt.get();
         model.addAttribute("producto", producto);
@@ -112,5 +119,24 @@ public class HomeController {
         model.addAttribute("orden", orden);
         model.addAttribute("usuario", usuario);
         return "usuario/resumenorden";
+    }    
+    @GetMapping("/saveOrder")
+    public String saveOrder(){
+        Date fechaCreacion=new Date();
+        orden.setFechaCreacion(fechaCreacion);
+        orden.setNumero(ordenService.generarNumeroOrden());
+        //Referenciamos al usuario
+        User usuario =usuarioService.findById(1).get();
+        orden.setUsuario(usuario);
+        ordenService.save(orden);
+        //Guardamos detalles
+        for(DetalleOrden dt:detalles){
+            dt.setOrden(orden);
+            detalleOrdenService.save(dt);
+        }
+        //Limpiamos valores
+        orden=new Orden();
+        detalles.clear();
+        return "redirect:/";
     }
 }
