@@ -13,6 +13,6 @@ import org.springframework.stereotype.Repository;
  * @author nihil
  */
 @Repository
-public interface OrdenRepository extends JpaRepository<Orden, Integer>{
+public interface OrdenRepository extends JpaRepository<Orden,Integer>{
     
 }
