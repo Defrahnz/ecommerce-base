@@ -11,5 +11,6 @@ import com.ecommerce.base.model.DetalleOrden;
  * @author nihil
  */
 public interface DetalleOrdenService {
-    DetalleOrden save(DetalleOrden detalleO);
+    DetalleOrden save(DetalleOrden detalleOrden);
+    
 }
