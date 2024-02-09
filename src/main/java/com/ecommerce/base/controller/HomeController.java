@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -138,5 +139,12 @@ public class HomeController {
         orden=new Orden();
         detalles.clear();
         return "redirect:/";
+    }
+    @PostMapping("/search")
+    public String searchProduct(@RequestParam String nombreProducto,Model model){
+        logger.info("Nombre del producto: {}",nombreProducto);
+        List<Product> productos=productoService.findAll().stream().filter(p -> p.getNombre().contains(nombreProducto)).collect(Collectors.toList());
+        model.addAttribute("productos",productos);
+        return "usuario/home";
     }
 }
