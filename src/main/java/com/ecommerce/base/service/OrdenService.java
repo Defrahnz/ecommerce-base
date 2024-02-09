@@ -12,6 +12,7 @@ import java.util.List;
  * @author nihil
  */
 public interface OrdenService {
-    List<Orden> findAll();
-    Orden save(Orden orden);
+   List<Orden> findAll();
+    Orden save(Orden orden); 
+    String generarNumeroOrden();
 }
