@@ -3,6 +3,67 @@
  * Copyright 2013-2020 Start Bootstrap
  * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-heroic-features/blob/master/LICENSE)
  */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
 body {
   padding-top: 56px;
+  font-family: 'Poppins',sans-serif;
 }
+
+.entrada{
+    width: 24%;
+    background-color: #F7E7CE;
+    padding:50px;
+    border-radius: 20px;
+    margin-top: 75px;
+    margin-bottom: 40px;
+    
+}
+
+.btn-primary{
+    width: 100%;
+    border:none;
+    border-radius: 50px;
+    background:#bea493;
+}
+
+
+.btn-primary:hover{
+    background: #9f826f;
+}
+
+.ingreso{
+    background-color: #F7E7CE;
+    color:rgba(0,0,0,.87);
+    border-bottom-color: rgba(0,0,0,.42);
+    box-shadow: none !important;
+    border:none;
+    border-bottom: 1px solid;
+    border-radius: 4px 4px 0 0;
+}
+.ingreso:focus{
+    background: #F7E7CE;
+}
+
+.titulo{
+    font-size: 2rem !important;
+    font-weight: 700;
+}
+
+.texto{
+    font-weight: 800 !important;
+}
+.informacion{
+    font-weight: 700;
+}
+.liga{
+    color:#bea493;
+}
+.liga:hover{
+    color:#9f826f;
+}
+@media only screen and (max-width:600px){
+    .entrada{
+        width: 100% !important;
+    }
+}
+
