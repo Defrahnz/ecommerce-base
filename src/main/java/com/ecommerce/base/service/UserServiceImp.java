@@ -24,5 +24,10 @@ public class UserServiceImp implements UserService{
         return usuarioRepository.findById(id);
     }
 
+    @Override
+    public User save(User usuario) {
+        return usuarioRepository.save(usuario);
+    }
+
     
 }

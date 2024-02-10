@@ -13,5 +13,7 @@ import org.springframework.stereotype.Repository;
  * @author nihil
  */@Repository
 public interface UserRepository extends JpaRepository<User,Integer>{
+
+    public User save(User usuario);
     
 }
