@@ -23,11 +23,15 @@ public class User {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
     private String nombre;
+    private String apellidoP;
+    private String apellidoM;
     private String username;
-    private String email;
-    private String direccion;
+    private String calle;
+    private String numero;
+    private String colonia;
     private String telefono;
     private String tipo;
+    private String email;
     private String pasword;
     
     @OneToMany(mappedBy="usuario")
@@ -36,26 +40,25 @@ public class User {
     @OneToMany(mappedBy= "usuario")
     private List<Orden> ordenes;
 
-    
     public User() {
     }
 
-    public User(int id, String nombre, String username, String email, String direccion, String telefono, String tipo, String pasword) {
+    public User(int id, String nombre, String apellidoP, String apellidoM, String username, String calle, String numero, String colonia, String telefono, String tipo, String email, String pasword) {
         this.id = id;
         this.nombre = nombre;
+        this.apellidoP = apellidoP;
+        this.apellidoM = apellidoM;
         this.username = username;
-        this.email = email;
-        this.direccion = direccion;
+        this.calle = calle;
+        this.numero = numero;
+        this.colonia = colonia;
         this.telefono = telefono;
         this.tipo = tipo;
+        this.email = email;
         this.pasword = pasword;
         this.products = products;
         this.ordenes = ordenes;
     }
-
-
-
-    //Getters and Setters
 
     public Integer getId() {
         return id;
@@ -73,6 +76,22 @@ public class User {
         this.nombre = nombre;
     }
 
+    public String getApellidoP() {
+        return apellidoP;
+    }
+
+    public void setApellidoP(String apellidoP) {
+        this.apellidoP = apellidoP;
+    }
+
+    public String getApellidoM() {
+        return apellidoM;
+    }
+
+    public void setApellidoM(String apellidoM) {
+        this.apellidoM = apellidoM;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -81,20 +100,28 @@ public class User {
         this.username = username;
     }
 
-    public String getEmail() {
-        return email;
+    public String getCalle() {
+        return calle;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setCalle(String calle) {
+        this.calle = calle;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public String getNumero() {
+        return numero;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public String getColonia() {
+        return colonia;
+    }
+
+    public void setColonia(String colonia) {
+        this.colonia = colonia;
     }
 
     public String getTelefono() {
@@ -111,6 +138,14 @@ public class User {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPasword() {
@@ -136,11 +171,12 @@ public class User {
     public void setOrdenes(List<Orden> ordenes) {
         this.ordenes = ordenes;
     }
-    
-    
+
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", nombre=" + nombre + ", username=" + username + ", email=" + email + ", direccion=" + direccion + ", telefono=" + telefono + ", tipo=" + tipo + ", pasword=" + pasword + '}';
+        return "User{" + "id=" + id + ", nombre=" + nombre + ", apellidoP=" + apellidoP + ", apellidoM=" + apellidoM + ", username=" + username + ", calle=" + calle + ", numero=" + numero + ", colonia=" + colonia + ", telefono=" + telefono + ", tipo=" + tipo + ", email=" + email + ", pasword=" + pasword + ", products=" + products + ", ordenes=" + ordenes + '}';
     }
+
+    
     
 }

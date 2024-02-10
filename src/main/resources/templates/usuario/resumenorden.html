@@ -48,9 +48,9 @@
                                 <h5 class="card-title">
                                     DATOS ORDEN
                                 </h5>
-                                <h6 th:text="${usuario.nombre}">Nombre: </h6>
+                                <h6 th:text="${usuario.nombre+' '+ usuario.apellidoP+' '+usuario.apellidoM}">Nombre: </h6>
                                 <h6 th:text="${usuario.email}">Correo: </h6>
-                                <h6 th:text="${usuario.direccion}">Dirección</h6>
+                                <h6 th:text="${usuario.calle+' # '+usuario.numero+' '+usuario.colonia}">Dirección</h6>
 
                                 <h5 class="card-title">
                                     PRODUCTOS
