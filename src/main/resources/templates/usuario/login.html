@@ -43,7 +43,7 @@
 
         <!-- Page Content -->
         <div class="container-fluid">
-            <form class="mx-auto entrada">
+            <form class="mx-auto entrada" th:action="@{/usuario/acceder}" method="post">
                 <h4 class="text-center titulo">Ingresar a Guitar Center</h4>
                 <div class="mb-3 mt-5">
                     <label for="email" class="form-label texto">E-mail: </label>
@@ -53,7 +53,7 @@
                 <div class="mb-3">
                     <label for="pasword" class="form-label texto">Contraseña: </label>
                     <input type="password" class="form-control ingreso" id="pasword" name="pasword" required>
-                    <div id="emailHelp" class="form-text informacion">¿No tienes una cuenta? <a th:href="@{/usuario/registro}" class="liga">Registrate</a></div>
+                    <div id="emailHelp" class="form-text informacion">¿No tienes una cuenta? <a th:href="@{/usuario/registro}" class="liga">Regístrate</a></div>
                 </div>
                 <button type="submit" class="btn btn-primary mt-4">Ingresar</button>
             </form>
