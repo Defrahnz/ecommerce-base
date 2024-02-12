@@ -6,6 +6,8 @@ package com.ecommerce.base.controller;
 
 import com.ecommerce.base.model.User;
 import com.ecommerce.base.service.UserService;
+import jakarta.servlet.http.HttpSession;
+import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,5 +40,22 @@ public class UserController {
     @GetMapping("/login")
     public String login(){
         return "usuario/login";
+    }
+    @PostMapping("/acceder")
+    public String acceder(User usuario,HttpSession sesion){
+        logger.info("Accesos por: {}",usuario);
+        Optional<User> us=usuarioService.findByEmail(usuario.getEmail());
+        //logger.info("Usuario obtenido de la BD: {}",us.get());
+        if(us.isPresent()){
+            sesion.setAttribute("idusuario", us.get().getId());
+            if(us.get().getTipo().equals("ADMIN")){
+                return "redirect:/administrador";
+            }else{
+                return "redirect:/";
+            }
+        }else{
+            logger.info("Usuario no existe");
+        }
+        return "redirect:/";
     }
 }
