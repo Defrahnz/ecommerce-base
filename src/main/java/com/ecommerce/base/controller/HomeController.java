@@ -12,6 +12,7 @@ import com.ecommerce.base.service.DetalleOrdenService;
 import com.ecommerce.base.service.OrdenService;
 import com.ecommerce.base.service.ProductService;
 import com.ecommerce.base.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -50,7 +51,8 @@ public class HomeController {
     @Autowired
     private DetalleOrdenService detalleOrdenService;
     @GetMapping("")
-    public String home(Model model){
+    public String home(Model model,HttpSession sesion){
+        logger.info("Sesion del usuario: {}",sesion.getAttribute("idusuario"));
         model.addAttribute("productos", productoService.findAll());
         return "usuario/home";
     }
@@ -114,20 +116,20 @@ public class HomeController {
         return "usuario/carrito";
     }
     @GetMapping("/Orden")
-    public String order(Model model){
-        User usuario=usuarioService.findById(1).get();
+    public String order(Model model,HttpSession sesion){
+        User usuario=usuarioService.findById(Integer.parseInt(sesion.getAttribute("idusuario").toString())).get();
         model.addAttribute("cart", detalles);
         model.addAttribute("orden", orden);
         model.addAttribute("usuario", usuario);
         return "usuario/resumenorden";
     }    
     @GetMapping("/saveOrder")
-    public String saveOrder(){
+    public String saveOrder(HttpSession sesion){
         Date fechaCreacion=new Date();
         orden.setFechaCreacion(fechaCreacion);
         orden.setNumero(ordenService.generarNumeroOrden());
         //Referenciamos al usuario
-        User usuario =usuarioService.findById(1).get();
+        User usuario =usuarioService.findById(Integer.parseInt(sesion.getAttribute("idusuario").toString())).get();
         orden.setUsuario(usuario);
         ordenService.save(orden);
         //Guardamos detalles

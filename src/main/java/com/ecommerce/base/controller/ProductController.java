@@ -8,6 +8,8 @@ import com.ecommerce.base.model.Product;
 import com.ecommerce.base.model.User;
 import com.ecommerce.base.service.ProductService;
 import com.ecommerce.base.service.UploadFileService;
+import com.ecommerce.base.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Optional;
 import org.slf4j.*;
@@ -33,7 +35,8 @@ public class ProductController {
     private ProductService productoService;
     @Autowired
     private UploadFileService upload;
-    
+    @Autowired
+    private UserService usuarioService;
     @GetMapping("")
     public String show(Model model){
        model.addAttribute("productos", productoService.findAll());
@@ -46,9 +49,9 @@ public class ProductController {
     }
    
     @PostMapping("/save")
-    public String save(Product producto, @RequestParam("img") MultipartFile file) throws IOException{
+    public String save(Product producto, @RequestParam("img") MultipartFile file, HttpSession sesion) throws IOException{
         logger.info("Este es el objeto del producto {}",producto);
-        User u=new User(1,"","","","","","","","","","","");
+        User u=usuarioService.findById(Integer.parseInt(sesion.getAttribute("idusuario").toString())).get();
         producto.setUsuario(u);
         //Subir imagenes
         if(producto.getId()==null){//Cuando se crea un producto
