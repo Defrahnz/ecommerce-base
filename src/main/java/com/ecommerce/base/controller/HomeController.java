@@ -54,6 +54,8 @@ public class HomeController {
     public String home(Model model,HttpSession sesion){
         logger.info("Sesion del usuario: {}",sesion.getAttribute("idusuario"));
         model.addAttribute("productos", productoService.findAll());
+        //Sesion
+        model.addAttribute("sesion",sesion.getAttribute("idusuario"));
         return "usuario/home";
     }
     @GetMapping("productohome/{id}")
@@ -110,17 +112,17 @@ public class HomeController {
         return "usuario/carrito";
     }
     @GetMapping("/getCart")
-    public String getCart(Model model){
+    public String getCart(Model model, HttpSession sesion){
         model.addAttribute("cart", detalles);
         model.addAttribute("orden", orden);
         return "usuario/carrito";
     }
     @GetMapping("/Orden")
     public String order(Model model,HttpSession sesion){
-        User usuario=usuarioService.findById(Integer.parseInt(sesion.getAttribute("idusuario").toString())).get();
         model.addAttribute("cart", detalles);
         model.addAttribute("orden", orden);
-        model.addAttribute("usuario", usuario);
+        //sesion
+        model.addAttribute("sesion", sesion.getAttribute("idusuario"));
         return "usuario/resumenorden";
     }    
     @GetMapping("/saveOrder")
