@@ -4,9 +4,12 @@
  */
 package com.ecommerce.base.controller;
 
+import com.ecommerce.base.model.Orden;
 import com.ecommerce.base.model.User;
+import com.ecommerce.base.service.OrdenService;
 import com.ecommerce.base.service.UserService;
 import jakarta.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,6 +30,8 @@ public class UserController {
     private final Logger logger=LoggerFactory.getLogger(UserController.class);
     @Autowired
     private UserService usuarioService;
+    @Autowired
+    private OrdenService ordenService;
     @GetMapping("/registro")
     public String create(){
         return "usuario/registro";
@@ -62,6 +67,9 @@ public class UserController {
     @GetMapping("/compras")
     public String obtenerCompras(HttpSession sesion, Model model){
         model.addAttribute("sesion",sesion.getAttribute("idusuario"));
+        User usuario=usuarioService.findById(Integer.parseInt(sesion.getAttribute("idusuario").toString())).get();
+        List<Orden> ordenes=ordenService.findByUsuario(usuario);
+        model.addAttribute("ordenes",ordenes);
         return "usuario/compras";
     }
 }
