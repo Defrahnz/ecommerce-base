@@ -6,6 +6,7 @@ package com.ecommerce.base.service;
 
 import com.ecommerce.base.model.User;
 import com.ecommerce.base.repository.UserRepository;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,11 @@ public class UserServiceImp implements UserService{
     @Override
     public Optional<User> findByEmail(String email) {
         return usuarioRepository.findByEmail(email);
+    }
+
+    @Override
+    public List<User> findAll() {
+        return usuarioRepository.findAll();
     }
 
     
