@@ -7,13 +7,15 @@ package com.ecommerce.base.service;
 import com.ecommerce.base.model.Orden;
 import com.ecommerce.base.model.User;
 import java.util.List;
+import java.util.Optional;
 
 /**
  *
  * @author nihil
  */
 public interface OrdenService {
-   List<Orden> findAll();
+    List<Orden> findAll();
+    Optional<Orden> findById(Integer id);
     Orden save(Orden orden); 
     String generarNumeroOrden();
     List<Orden>findByUsuario(User usuario);
