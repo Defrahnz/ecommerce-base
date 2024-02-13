@@ -6,6 +6,7 @@ package com.ecommerce.base.controller;
 
 import com.ecommerce.base.model.Product;
 import com.ecommerce.base.service.ProductService;
+import com.ecommerce.base.service.UserService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,10 +23,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AdminController {
     @Autowired
     private ProductService productoService;
+    @Autowired
+    private UserService usuarioService;
     @GetMapping("")
     public String home(Model model){
         List<Product> productos=productoService.findAll();
         model.addAttribute("productos",productos);
         return "admin/home";
+    }
+    @GetMapping("/usuarios")
+    public String usuarios(Model model){
+        model.addAttribute("usuarios",usuarioService.findAll());
+        return "admin/usuarios";
     }
 }
