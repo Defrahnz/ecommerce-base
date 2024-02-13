@@ -5,6 +5,7 @@
 package com.ecommerce.base.service;
 
 import com.ecommerce.base.model.Orden;
+import com.ecommerce.base.model.User;
 import java.util.List;
 
 /**
@@ -15,4 +16,6 @@ public interface OrdenService {
    List<Orden> findAll();
     Orden save(Orden orden); 
     String generarNumeroOrden();
+    List<Orden>findByUsuario(User usuario);
+
 }

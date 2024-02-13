@@ -5,6 +5,7 @@
 package com.ecommerce.base.service;
 
 import com.ecommerce.base.model.Orden;
+import com.ecommerce.base.model.User;
 import com.ecommerce.base.repository.OrdenRepository;
 import java.util.ArrayList;
 import java.util.List;
@@ -60,5 +61,10 @@ public class OrdenServiceImp implements OrdenService{
              numeroConcat="0"+String.valueOf(num);
         }
         return numeroConcat;
+    }
+
+    @Override
+    public List<Orden> findByUsuario(User usuario) {
+        return ordenRepository.findByUsuario(usuario);
     }
 }
