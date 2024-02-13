@@ -9,9 +9,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -31,13 +32,13 @@ public class Orden {
     @ManyToOne
     private User usuario;
     
-    @OneToOne(mappedBy="orden")
-    private DetalleOrden detalle;
+    @OneToMany(mappedBy="orden")
+    private List <DetalleOrden> detalle;
 
     public Orden() {
     }
 
-    public Orden(Integer id, String numero, Date fechaCreacion, Date fechaRecibida, double total, User usuario, DetalleOrden detalle) {
+    public Orden(Integer id, String numero, Date fechaCreacion, Date fechaRecibida, double total, User usuario, List<DetalleOrden> detalle) {
         this.id = id;
         this.numero = numero;
         this.fechaCreacion = fechaCreacion;
@@ -99,11 +100,11 @@ public class Orden {
         this.usuario = usuario;
     }
 
-    public DetalleOrden getDetalle() {
+    public List<DetalleOrden> getDetalle() {
         return detalle;
     }
 
-    public void setDetalle(DetalleOrden detalle) {
+    public void setDetalle(List<DetalleOrden> detalle) {
         this.detalle = detalle;
     }
 
