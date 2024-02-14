@@ -10,9 +10,8 @@
         <meta name="author" content="">
 
         <title>Guitar Center</title>
-
-
-        <!-- Bootstrap core CSS -->
+        <!-- Favicon -->
+        <link rel="icon" type="image/ico" th:href="@{../static/favicon.ico}">
         <link th:href="@{vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
 
         <!-- Custom styles for this template -->
@@ -39,7 +38,7 @@
 
                 <div class="col-lg-3 col-md-6 mb-4" th:each="producto: ${productos}">
                     <div class="card h-100">
-                        <img class="card-img-top" th:src="@{/images/{img}(img=${producto.imagen})}">
+                        <img class="card-img-top imagenes-fixed" th:src="@{images/{img}(img=${producto.imagen})}">
                         <div class="card-body">
                             <p class="card-text" th:text="${producto.nombre}"></p>
                         </div>
