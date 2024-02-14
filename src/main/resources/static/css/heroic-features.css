@@ -67,3 +67,8 @@ body {
     }
 }
 
+.imagenes-fixed{
+    width: 200px; /* Ancho fijo */
+    height: 200px; /* Alto fijo */
+    object-fit: cover; /* Evita que las imágenes se distorsionen */
+}
