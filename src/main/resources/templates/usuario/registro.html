@@ -9,8 +9,8 @@
         <meta name="author" content="">
 
         <title>Registro</title>
-
-
+        <!-- Favicon -->
+        <link rel="icon" type="image/ico" th:href="@{../static/favicon.ico}">
         <!-- Bootstrap core CSS -->
         <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
 
@@ -107,15 +107,15 @@
                 </div>
             </form>  
         </div>
-    <!-- /.container -->
-    <br>
-    <!-- Footer -->
-    <div th:include="usuario/template_usuario.html::footer"></div>
+        <!-- /.container -->
+        <br>
+        <!-- Footer -->
+        <div th:include="usuario/template_usuario.html::footer"></div>
 
-    <!-- Bootstrap core JavaScript -->
-    <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
-    <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+        <!-- Bootstrap core JavaScript -->
+        <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+        <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
 
-</body>
+    </body>
 
 </html>
