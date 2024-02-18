@@ -5,6 +5,7 @@
 package com.ecommerce.base.controller;
 
 import com.ecommerce.base.model.Product;
+import com.ecommerce.base.service.OrdenService;
 import com.ecommerce.base.service.ProductService;
 import com.ecommerce.base.service.UserService;
 import java.util.List;
@@ -25,6 +26,8 @@ public class AdminController {
     private ProductService productoService;
     @Autowired
     private UserService usuarioService;
+    @Autowired
+    private OrdenService ordenService;
     @GetMapping("")
     public String home(Model model){
         List<Product> productos=productoService.findAll();
@@ -35,5 +38,10 @@ public class AdminController {
     public String usuarios(Model model){
         model.addAttribute("usuarios",usuarioService.findAll());
         return "admin/usuarios";
+    }
+    @GetMapping("/ordenes")
+    public String ordenes(Model model){
+        model.addAttribute("ordenes",ordenService.findAll());
+         return "admin/ordenes";
     }
 }
