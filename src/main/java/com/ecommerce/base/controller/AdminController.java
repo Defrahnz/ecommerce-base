@@ -4,15 +4,19 @@
  */
 package com.ecommerce.base.controller;
 
+import com.ecommerce.base.model.Orden;
 import com.ecommerce.base.model.Product;
 import com.ecommerce.base.service.OrdenService;
 import com.ecommerce.base.service.ProductService;
 import com.ecommerce.base.service.UserService;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -22,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/administrador")
 public class AdminController {
+    private Logger logger=LoggerFactory.getLogger(AdminController.class);
     @Autowired
     private ProductService productoService;
     @Autowired
@@ -43,5 +48,12 @@ public class AdminController {
     public String ordenes(Model model){
         model.addAttribute("ordenes",ordenService.findAll());
          return "admin/ordenes";
+    }
+    @GetMapping("/detalle/{id}")
+    public String detalle(Model model,@PathVariable Integer id){
+        logger.info("Id de la orden: {}",id);
+        Orden orden=ordenService.findById(id).get();
+        model.addAttribute("detalles",orden.getDetalle());
+        return "admin/detalleorden";
     }
 }
