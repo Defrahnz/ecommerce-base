@@ -7,7 +7,7 @@ package com.ecommerce.base.controller;
 import com.ecommerce.base.model.DetalleOrden;
 import com.ecommerce.base.model.Orden;
 import com.ecommerce.base.model.Product;
-import com.ecommerce.base.model.User;
+import com.ecommerce.base.model.User1;
 import com.ecommerce.base.service.DetalleOrdenService;
 import com.ecommerce.base.service.OrdenService;
 import com.ecommerce.base.service.ProductService;
@@ -131,7 +131,7 @@ public class HomeController {
         orden.setFechaCreacion(fechaCreacion);
         orden.setNumero(ordenService.generarNumeroOrden());
         //Referenciamos al usuario
-        User usuario =usuarioService.findById(Integer.parseInt(sesion.getAttribute("idusuario").toString())).get();
+        User1 usuario =usuarioService.findById(Integer.parseInt(sesion.getAttribute("idusuario").toString())).get();
         orden.setUsuario(usuario);
         ordenService.save(orden);
         //Guardamos detalles

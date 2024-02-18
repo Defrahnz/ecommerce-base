@@ -4,7 +4,7 @@
  */
 package com.ecommerce.base.repository;
 
-import com.ecommerce.base.model.User;
+import com.ecommerce.base.model.User1;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -13,9 +13,9 @@ import org.springframework.stereotype.Repository;
  *
  * @author nihil
  */@Repository
-public interface UserRepository extends JpaRepository<User,Integer>{
+public interface UserRepository extends JpaRepository<User1,Integer>{
     @Override
-    public User save(User usuario);
-    Optional<User> findByEmail(String email);
+    public User1 save(User1 usuario);
+    Optional<User1> findByEmail(String email);
     
 }

@@ -4,7 +4,7 @@
  */
 package com.ecommerce.base.service;
 
-import com.ecommerce.base.model.User;
+import com.ecommerce.base.model.User1;
 import com.ecommerce.base.repository.UserRepository;
 import java.util.List;
 import java.util.Optional;
@@ -21,22 +21,22 @@ public class UserServiceImp implements UserService{
     private UserRepository usuarioRepository;
 
     @Override
-    public Optional<User> findById(Integer id) {
+    public Optional<User1> findById(Integer id) {
         return usuarioRepository.findById(id);
     }
 
     @Override
-    public User save(User usuario) {
+    public User1 save(User1 usuario) {
         return usuarioRepository.save(usuario);
     }
 
     @Override
-    public Optional<User> findByEmail(String email) {
+    public Optional<User1> findByEmail(String email) {
         return usuarioRepository.findByEmail(email);
     }
 
     @Override
-    public List<User> findAll() {
+    public List<User1> findAll() {
         return usuarioRepository.findAll();
     }
 

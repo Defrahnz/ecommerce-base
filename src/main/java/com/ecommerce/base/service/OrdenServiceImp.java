@@ -5,7 +5,7 @@
 package com.ecommerce.base.service;
 
 import com.ecommerce.base.model.Orden;
-import com.ecommerce.base.model.User;
+import com.ecommerce.base.model.User1;
 import com.ecommerce.base.repository.OrdenRepository;
 import java.util.ArrayList;
 import java.util.List;
@@ -65,7 +65,7 @@ public class OrdenServiceImp implements OrdenService{
     }
 
     @Override
-    public List<Orden> findByUsuario(User usuario) {
+    public List<Orden> findByUsuario(User1 usuario) {
         return ordenRepository.findByUsuario(usuario);
     }
 

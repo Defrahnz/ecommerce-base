@@ -5,7 +5,7 @@
 package com.ecommerce.base.controller;
 
 import com.ecommerce.base.model.Product;
-import com.ecommerce.base.model.User;
+import com.ecommerce.base.model.User1;
 import com.ecommerce.base.service.ProductService;
 import com.ecommerce.base.service.UploadFileService;
 import com.ecommerce.base.service.UserService;
@@ -51,7 +51,7 @@ public class ProductController {
     @PostMapping("/save")
     public String save(Product producto, @RequestParam("img") MultipartFile file, HttpSession sesion) throws IOException{
         logger.info("Este es el objeto del producto {}",producto);
-        User u=usuarioService.findById(Integer.parseInt(sesion.getAttribute("idusuario").toString())).get();
+        User1 u=usuarioService.findById(Integer.parseInt(sesion.getAttribute("idusuario").toString())).get();
         producto.setUsuario(u);
         //Subir imagenes
         if(producto.getId()==null){//Cuando se crea un producto

@@ -28,12 +28,12 @@ public class Product {
     private int cantidad;
 
     @ManyToOne
-    private User usuario;
+    private User1 usuario;
     
     public Product() {
     }
 
-    public Product(Integer id, String nombre, String descripcion, String imagen, double precio, int cantidad, User usuario) {
+    public Product(Integer id, String nombre, String descripcion, String imagen, double precio, int cantidad, User1 usuario) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -94,11 +94,11 @@ public class Product {
         this.cantidad = cantidad;
     }
 
-    public User getUsuario() {
+    public User1 getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(User usuario) {
+    public void setUsuario(User1 usuario) {
         this.usuario = usuario;
     }
 
